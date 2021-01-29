@@ -9,13 +9,14 @@ class HashDS:
 
     def insert(self, ID, address, deadline, city, zipCode, weight):
         key_hash = self._get_hash(ID)
-        # status of package whereabouts
-        status = "at the hub"
+        # the time package is loaded on truck
+        load_time = ""
+        # Time of Delivery
+        time_of_delivery = ""
         # truck number assigned to the package
         truck = 'unassigned'
-        # Time of Delivery
-        ToD = "not yet delivered"
-        key_value = [ID, address, deadline, city, zipCode, weight, status, truck, ToD]
+
+        key_value = [ID, address, deadline, city, zipCode, weight, load_time, truck, time_of_delivery]
         if self.table[key_hash] is None:
             self.table[key_hash] = list([key_value])
             return True
@@ -46,11 +47,10 @@ class HashDS:
     #             self.table[key_hash].pop(i)
     #             return True
 
-    def load(self, ID, value, truck):
+    def load(self, ID, value, truck, load_time):
         key_hash = self._get_hash(ID)
-        status = "en route"
         key_value = value
-        key_value[6] = status
+        key_value[6] = load_time
         key_value[7] = truck
         for items in self.table[key_hash]:
             if items[0] == ID:
@@ -58,12 +58,10 @@ class HashDS:
                     items[i] = key_value[i]
                 return True
 
-    def deliver(self, ID, value, ToD):
+    def deliver(self, ID, value, time_of_delivery):
         key_hash = self._get_hash(ID)
-        status = "Delivered"
         key_value = value
-        key_value[6] = status
-        key_value[8] = ToD
+        key_value[8] = time_of_delivery
         for items in self.table[key_hash]:
             if items[0] == ID:
                 for i in range(1, len(key_value)):

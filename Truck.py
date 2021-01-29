@@ -15,16 +15,15 @@ class Truck:
     def load_truck(self, HashDS, ID):
         package = HashDS.look_up(ID)
         if len(self.load) < self.size:
-            HashDS.load(ID, package, self.truckNumber)
+            HashDS.load(ID, package, self.truckNumber, self.time.getTime())
             package = HashDS.look_up(ID)
             self.load.append(package)
         else:
             print(f'{self.truckNumber} is at capacity, package ID {str(package[0])} Was not loaded')
 
     def deliver(self, HashDS, ID):
-        ToD = f'Time of Delivery - {self.time.getTime()}'
         package = HashDS.look_up(ID)
-        HashDS.deliver(ID, package, ToD)
+        HashDS.deliver(ID, package, self.time.getTime())
         package = HashDS.look_up(ID)
         self.load.remove(package)
 
