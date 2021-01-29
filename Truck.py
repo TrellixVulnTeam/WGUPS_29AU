@@ -15,7 +15,7 @@ class Truck:
     def load_truck(self, HashDS, ID):
         package = HashDS.look_up(ID)
         if len(self.load) < self.size:
-            HashDS.load(ID, package, self.truckNumber, self.time.getTime())
+            HashDS.load(ID, package, self.truckNumber, self.time.getTimeStamp())
             package = HashDS.look_up(ID)
             self.load.append(package)
         else:
@@ -23,7 +23,7 @@ class Truck:
 
     def deliver(self, HashDS, ID):
         package = HashDS.look_up(ID)
-        HashDS.deliver(ID, package, self.time.getTime())
+        HashDS.deliver(ID, package, self.time.getTimeStamp())
         package = HashDS.look_up(ID)
         self.load.remove(package)
 
@@ -34,5 +34,5 @@ class Truck:
         self.miles += miles
 
     def info(self):
-        return f"{self.truckNumber} left the Hub at {self.start_time.getTime()} and has traveled {self.miles} miles " \
-               f"on its route.\n {self.truckNumber} completed its route and returned to Hub at {self.time.getTime()}\n"
+        return f"{self.truckNumber} left the Hub at {self.start_time.getTimeStamp()} and has traveled {self.miles} miles " \
+               f"on its route.\n {self.truckNumber} completed its route and returned to Hub at {self.time.getTimeStamp()}\n"
