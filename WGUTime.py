@@ -3,10 +3,10 @@
 class WGUTime:
     def __init__(self, hours, minutes):
         while hours > 24 or hours < 0:
-            self.hours = input("Hours are in military time from 0 - 24, please enter valid hour value")
+            hours = int(input("Hours are in military time from 0 - 23, please enter valid hour value"))
         self.hours = hours
         while minutes > 59 or minutes < 0:
-            self.minutes = input("Minute values ranger from 0 - 59, please enter a valid minute value")
+            minutes = int(input("Minute values range from 0 - 59, please enter a valid minute value"))
         self.minutes = minutes
 
     def addMinutes(self, minute):

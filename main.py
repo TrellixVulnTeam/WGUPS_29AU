@@ -1,6 +1,8 @@
 from HashDS import HashDS
 from Truck import Truck
 from TSP import TSP
+from TimeStamp import *
+from WGUTime import WGUTime
 
 import csv
 
@@ -72,4 +74,48 @@ TSP_3 = TSP(truck_3)
 TSP_3.truckRoute(allDistances, allPackages, 0)
 
 print(truck_2.info(), truck_1.info(), truck_3.info())
-print(truck_2.miles+truck_1.miles+truck_3.miles)
+total_miles = truck_2.miles + truck_1.miles + truck_3.miles
+print(f'The combined mileage of all trucks sums up to {total_miles}')
+all_packages_status(allPackages, "09:00")
+all_packages_status(allPackages, "10:00")
+all_packages_status(allPackages, "11:54")
+print("==========================================================================")
+print("Hello welcome to command line interface for the WGUPS package manager")
+print("==========================================================================")
+loop = True
+while loop:
+    x = input("would you like to continue the app 'Y to continue'/'N to end'\n")
+    if x.lower() == "n":
+        print("GoodBye!")
+        loop = False
+    elif x.lower() == "y":
+        while 1:
+            try:
+                input_time = input("Enter a time in format HH:MM\n")
+                time_del = input_time.split(":")
+                hour = int(time_del[0])
+                minute = int(time_del[1])
+                while len(time_del) > 2 or hour >= 24 or hour < 0 or minute >= 60 or minute < 0:
+                    print("Hours are in military time from 0 - 23, please enter valid hour value")
+                    print("Minute values range from 0 - 59, please enter a valid minute value")
+                    input_time = input("Enter a time in format HH:MM\n")
+                    time_del = input_time.split(":")
+                    hour = int(time_del[0])
+                    minute = int(time_del[1])
+                break
+            except ValueError:
+                print("invalid entry")
+            except IndexError:
+                print("invalid entry")
+        while 1:
+            try:
+                package_ID = int(input("please enter package ID:\n"))
+                while package_ID <= 0 or package_ID > allPackages.size:
+                    print("package ID's range from 1-40\n")
+                    package_ID = int(input("please enter a package ID:\n"))
+                break
+            except ValueError:
+                print("invalid entry")
+        package_status(allPackages, input_time, package_ID)
+    else:
+        print("invalid entry\n")

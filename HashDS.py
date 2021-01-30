@@ -1,4 +1,5 @@
 # Hash Data Structure
+
 class HashDS:
     def __init__(self, size):
         self.size = size
@@ -37,16 +38,6 @@ class HashDS:
                     return items
         return None
 
-    # deleting packages is not used in this project
-    # def delete(self, ID):
-    #     key_hash = self._get_hash(ID)
-    #     if self.table[key_hash] is None:
-    #         return False
-    #     for i in range(0, len(self.table[key_hash])):
-    #         if self.table[key_hash][i][0] == ID:
-    #             self.table[key_hash].pop(i)
-    #             return True
-
     def load(self, ID, value, truck, load_time):
         key_hash = self._get_hash(ID)
         key_value = value
@@ -67,3 +58,4 @@ class HashDS:
                 for i in range(1, len(key_value)):
                     items[i] = key_value[i]
                 return True
+
