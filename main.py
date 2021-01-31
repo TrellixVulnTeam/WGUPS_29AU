@@ -21,9 +21,9 @@ with open('WGUPSDistanceTable.csv') as distanceFile:
 # creating truck 1, and truck 2 objects to load packages
 truck_1 = Truck('Truck 1', 9, 5)
 TSP_1 = TSP(truck_1)
+truck_1.load_truck(allPackages, 1)
 truck_1.load_truck(allPackages, 6)
 truck_1.load_truck(allPackages, 12)
-truck_1.load_truck(allPackages, 13)
 truck_1.load_truck(allPackages, 22)
 truck_1.load_truck(allPackages, 23)
 truck_1.load_truck(allPackages, 24)
@@ -35,12 +35,14 @@ truck_1.load_truck(allPackages, 31)
 truck_1.load_truck(allPackages, 32)
 truck_1.load_truck(allPackages, 40)
 truck_1.load_truck(allPackages, 34)
+truck_1.load_truck(allPackages, 4)
+truck_1.load_truck(allPackages, 17)
+
 TSP_1.truckRoute(allDistances, allPackages, 0)
 
 # Manually loading packages onto Truck object
 truck_2 = Truck('Truck 2', 8, 0)
 TSP_2 = TSP(truck_2)
-truck_2.load_truck(allPackages, 1)
 truck_2.load_truck(allPackages, 3)
 truck_2.load_truck(allPackages, 14)
 truck_2.load_truck(allPackages, 15)
@@ -54,37 +56,40 @@ truck_2.load_truck(allPackages, 30)
 truck_2.load_truck(allPackages, 37)
 truck_2.load_truck(allPackages, 38)
 truck_2.load_truck(allPackages, 36)
+truck_2.load_truck(allPackages, 11)#3 good
+truck_2.load_truck(allPackages, 13)#1
 TSP_2.truckRoute(allDistances, allPackages, 0)
 
 # declare after truck 2 has returned so the time is set dynamically
 truck_3 = Truck('Truck 3', truck_2.time.hours, truck_2.time.minutes)
+
 truck_3.load_truck(allPackages, 2)
-truck_3.load_truck(allPackages, 4)
 truck_3.load_truck(allPackages, 5)
+
 truck_3.load_truck(allPackages, 7)
 truck_3.load_truck(allPackages, 8)
 truck_3.load_truck(allPackages, 9)
 truck_3.load_truck(allPackages, 10)
-truck_3.load_truck(allPackages, 11)
-truck_3.load_truck(allPackages, 17)
+
 truck_3.load_truck(allPackages, 33)
 truck_3.load_truck(allPackages, 35)
 truck_3.load_truck(allPackages, 39)
+
 TSP_3 = TSP(truck_3)
 TSP_3.truckRoute(allDistances, allPackages, 0)
 
 print(truck_2.info(), truck_1.info(), truck_3.info())
 total_miles = truck_2.miles + truck_1.miles + truck_3.miles
-print(f'The combined mileage of all trucks sums up to {total_miles}')
+print(f'The combined mileage of all trucks sums up to {round(total_miles,2)}')
 all_packages_status(allPackages, "09:00")
-all_packages_status(allPackages, "10:00")
+all_packages_status(allPackages, "10:30")
 all_packages_status(allPackages, "11:54")
 print("==========================================================================")
 print("Hello welcome to command line interface for the WGUPS package manager")
 print("==========================================================================")
 loop = True
 while loop:
-    x = input("would you like to continue the app 'Y to continue'/'N to end'\n")
+    x = input("would you like to continue the app 'Y' to continue/'N' to end\n")
     if x.lower() == "n":
         print("GoodBye!")
         loop = False

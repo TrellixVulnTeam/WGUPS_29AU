@@ -9,7 +9,7 @@ class Truck:
         self.time = WGUTime(hour, minute)
         self.load = []
         self.miles = 0
-        self.size = 14
+        self.size = 16
         self.speed = 18
 
     def load_truck(self, HashDS, ID):
@@ -32,6 +32,7 @@ class Truck:
         minutes = round((miles / self.speed) * 60, 2)
         self.time.addMinutes(minutes)
         self.miles += miles
+        self.miles = round(self.miles, 2)
 
     def info(self):
         return f"{self.truckNumber} left the Hub at {self.start_time.getTimeStamp()} and has traveled {self.miles} miles " \
