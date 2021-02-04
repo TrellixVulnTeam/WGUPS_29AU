@@ -18,7 +18,7 @@ with open('WGUPSDistanceTable.csv') as distanceFile:
     for row in distance:
         allDistances.append(row)
 
-# creating truck 1, and truck 2 objects to load packages
+# creating a Truck 1 instance as well as a TSP 1 instance and adding packages to Truck 1 manually
 truck_1 = Truck('Truck 1', 9, 5)
 TSP_1 = TSP(truck_1)
 truck_1.load_truck(allPackages, 1)
@@ -37,10 +37,9 @@ truck_1.load_truck(allPackages, 40)
 truck_1.load_truck(allPackages, 34)
 truck_1.load_truck(allPackages, 4)
 truck_1.load_truck(allPackages, 17)
-
 TSP_1.truckRoute(allDistances, allPackages, 0)
 
-# Manually loading packages onto Truck object
+# creating a Truck 2 instance as well as a TSP 2 instance and adding packages to Truck 2 manually
 truck_2 = Truck('Truck 2', 8, 0)
 TSP_2 = TSP(truck_2)
 truck_2.load_truck(allPackages, 3)
@@ -56,34 +55,33 @@ truck_2.load_truck(allPackages, 30)
 truck_2.load_truck(allPackages, 37)
 truck_2.load_truck(allPackages, 38)
 truck_2.load_truck(allPackages, 36)
-truck_2.load_truck(allPackages, 11)#3 good
-truck_2.load_truck(allPackages, 13)#1
+truck_2.load_truck(allPackages, 11)
+truck_2.load_truck(allPackages, 13)
 TSP_2.truckRoute(allDistances, allPackages, 0)
 
-# declare after truck 2 has returned so the time is set dynamically
+# declare after truck 2 has returned so the time is set dynamically,
+# creating a Truck 3 instance as well as a TSP 3 instance and adding packages to Truck 3 manually
 truck_3 = Truck('Truck 3', truck_2.time.hours, truck_2.time.minutes)
-
 truck_3.load_truck(allPackages, 2)
 truck_3.load_truck(allPackages, 5)
-
 truck_3.load_truck(allPackages, 7)
 truck_3.load_truck(allPackages, 8)
 truck_3.load_truck(allPackages, 9)
 truck_3.load_truck(allPackages, 10)
-
 truck_3.load_truck(allPackages, 33)
 truck_3.load_truck(allPackages, 35)
 truck_3.load_truck(allPackages, 39)
-
 TSP_3 = TSP(truck_3)
 TSP_3.truckRoute(allDistances, allPackages, 0)
+
+
 
 print(truck_2.info(), truck_1.info(), truck_3.info())
 total_miles = truck_2.miles + truck_1.miles + truck_3.miles
 print(f'The combined mileage of all trucks sums up to {round(total_miles,2)}')
 all_packages_status(allPackages, "09:00")
 all_packages_status(allPackages, "10:30")
-all_packages_status(allPackages, "11:54")
+all_packages_status(allPackages, "12:03")
 print("==========================================================================")
 print("Hello welcome to command line interface for the WGUPS package manager")
 print("==========================================================================")
