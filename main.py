@@ -74,17 +74,15 @@ truck_3.load_truck(allPackages, 39)
 TSP_3 = TSP(truck_3)
 TSP_3.truckRoute(allDistances, allPackages, 0)
 
-
-
+# Command Line interface
 print(truck_2.info(), truck_1.info(), truck_3.info())
-total_miles = truck_2.miles + truck_1.miles + truck_3.miles
-print(f'The combined mileage of all trucks sums up to {round(total_miles,2)}')
 all_packages_status(allPackages, "09:00")
 all_packages_status(allPackages, "10:30")
 all_packages_status(allPackages, "12:03")
-print("==========================================================================")
+total_mileage(truck_1,truck_2,truck_3, allPackages)
+print("=========================================================================================================")
 print("Hello welcome to command line interface for the WGUPS package manager")
-print("==========================================================================")
+print("=========================================================================================================")
 loop = True
 while loop:
     x = input("would you like to continue the app 'Y' to continue/'N' to end\n")
