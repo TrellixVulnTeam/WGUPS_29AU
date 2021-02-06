@@ -1,6 +1,7 @@
 # Time Class
 
 class WGUTime:
+    # The WGUTime object is declared using an hour and minute integer values.
     def __init__(self, hours, minutes):
         while hours > 24 or hours < 0:
             hours = int(input("Hours are in military time from 0 - 23, please enter valid hour value"))
@@ -9,6 +10,7 @@ class WGUTime:
             minutes = int(input("Minute values range from 0 - 59, please enter a valid minute value"))
         self.minutes = minutes
 
+    # This method is used to add minutes to the WGUTime object
     def addMinutes(self, minute):
         hour = int(minute / 60)
         minute = int(minute % 60)
@@ -20,6 +22,7 @@ class WGUTime:
         if self.hours >= 24:
             self.hours = int(self.hours % 24)
 
+    # This method returns a string TimeStamp of the current time of the WGUTime object
     def getTimeStamp(self):
         if self.hours < 10 and self.minutes < 10:
             time_string = f'0{self.hours}:0{self.minutes}'
